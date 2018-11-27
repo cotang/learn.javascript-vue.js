@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lesson 1 - homework</title>
+	<style>
+		table, td, th{
+			border: 1px solid black;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Lesson 2</h1>
+	<div id="app">
+		<button v-tooltip="'toggleTable button'" @click="toggleTable">Toggle table</button>
+
+		
+		<div id="userlist-template">
+			<table v-if="tableShown">
+				<caption>Total - {{countAll}}</caption>
+				<thead>
+					<tr>
+						<th>lastname</th>
+						<th>name</th>
+						<th>patronym</th>
+						<th>avatar</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="user, i in userList" :key="user.id">
+						<td>{{user.lastname}}</td>
+						<td>{{user.name | uppercase}}</td>
+						<td>{{user.patronym}}</td>
+						<td>
+							<img v-if="user.img" :src="user.img" :alt="user.name+' '+user.lastname">
+							<img v-else src="https://via.placeholder.com/100" alt="default avatar">
+						</td>
+						<td><button v-copy="user.lastname+' '+user.name+' '+user.patronym">Copy!</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<!-- <user-list></user-list> -->
+
+		<div>{{width}}</div>
+		<div><input type="text" v-model.trim="test" @keyup="usersLoaded"></div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/v-copy@0.1.0/dist/v-copy.js"></script>
+	<script src="https://unpkg.com/v-tooltip"></script>
+	<script>
+		var UserList = {
+			template: '#userlist-template'
+		}
+
+
+		window.app = new Vue({
+			el: '#app',
+			components: { 
+				'user-list': UserList
+			},
+			data: function(){
+				return {
+					test: 123,
+					userList: [],
+					tableShown: true,
+					width: window.outerWidth
+				}
+			},
+		  computed: {
+		    // width: function() {
+		    //   return window.outerWidth;
+		    // },
+		    countAll: function() {
+		      return this.userList.length
+		    }
+	    },
+			filters: {
+			  uppercase: function (value) {
+			    if (!value) return ''
+			    value = value.toString()
+			    return value.toUpperCase()
+			  }
+			},
+			watch: {
+				countAll: {
+					handler: 'usersLoaded',
+					// immediate: true
+				}
+			},
+			mounted(){
+				this.loadUsers();
+
+				var self = this;
+				window.addEventListener('resize', function(){
+					self.width = window.outerWidth;
+				})
+			},
+			methods: {
+				usersLoaded(){
+					console.log('userlist change', this.countAll)
+				},
+				loadUsers: function(){
+					this.userList = [
+						{
+							'id':1001,
+							'name': 'John',
+							'lastname': 'Doe',
+							'patronym': 'Ivanovich',
+							'img': 'https://fillmurray.com/99/99'
+						},
+						{
+							'id':1002,
+							'name': 'Jack',
+							'lastname': 'Black',
+							'patronym': 'Petrovich',
+							'img': 'https://fillmurray.com/98/98'
+						},
+						{
+							'id':1003,
+							'name': 'Mike',
+							'lastname': 'White',
+							'patronym': 'Sidorovich',
+						},
+						{
+							'id':1004,
+							'name': 'Flinn',
+							'lastname': 'Green',
+							'patronym': 'Abramovich',
+						},
+						{
+							'id':1005,
+							'name': 'Qwerty',
+							'lastname': 'Uiop',
+							'patronym': 'ibn Rahman',
+							'img': 'https://fillmurray.com/100/100'
+						},
+					]
+				},
+				toggleTable: function(){
+					this.tableShown = !this.tableShown;
+				}
+			}
+		})
+	</script>
+</body>
+</html>

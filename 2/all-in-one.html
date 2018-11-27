@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lesson 2 - homework</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<style>
+		.hidden{
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h1>Lesson 2</h1>
+
+		<div id="app">
+			<user-list :list="users" @choose="showUserDetails"></user-list>
+			<user-item :person="chosenUser"></user-item>
+		</div>
+
+
+		<div id="userlist-template" class="hidden">		
+			<table class="table">
+				<thead>
+					<tr>
+						<th>name</th>
+						<th>username</th>
+						<th>email</th>
+						<th>phone</th>
+						<th>website</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="user, i in list" :key="user.id">
+						<td>{{user.name}}</td>
+						<td>{{user.username }}</td>
+						<td>{{user.email}}</td>
+						<td>{{user.phone}}</td>
+						<td>{{user.website}}</td>
+						<td><button type="button" class="btn btn-secondary" @click="chooseUser(user.id)">Выбрать</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div v-if="userIsChosen">
+			<div id="useritem-template" class="hidden" class="card" style="width: 18rem;">
+			  <div class="card-body">
+			    <h5 class="card-title">{{person.name}}</h5>
+			    <p class="card-text">{{person.company.name}} {{person.company.catchPhrase}} {{person.company.bs}}</p>
+			    <a href="#" class="btn btn-primary">{{person.phone}}</a>
+			  </div>
+			</div>
+		</div>
+
+
+	</div>
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script>
+		var UserList = {
+			template: '#userlist-template',
+			props: {
+				list: {
+					type: Array,
+					required: true
+				},
+			}, 
+			methods: {
+				chooseUser: function(id){
+					this.$emit('choose', id)
+				}
+			}
+		}
+
+		var UserItem = {
+			template: '#useritem-template',
+			props: {
+				person: {
+					type: Object
+				},
+			}
+		}
+
+
+		window.app = new Vue({
+			el: '#app',
+			components: { 
+				'user-list': UserList,
+				'user-item': UserItem,
+			},
+			data: function(){
+				return {
+					users: [],
+					userIsChosen: false,
+					chosenUser: {}
+				}
+			},
+		  computed: {
+	    },
+			watch: {
+			},
+			mounted(){
+				this.loadUsers();
+			},
+			methods: {
+				loadUsers: function(){
+					var self = this;
+					axios.get('http://jsonplaceholder.typicode.com/users')
+						.then(function(response){
+							self.users = response.data
+							console.log(self.users)
+						})
+				},
+				showUserDetails: function(id){				
+					this.userIsChosen = true;
+					this.chosenUser = this.users[id-1];
+				}
+			}
+		})
+	</script>
+</body>
+</html>

@@ -64,43 +64,46 @@
 			  }
 			},
 			mounted(){
-				this.userList = [
-					{
-						'id':1001,
-						'name': 'John',
-						'lastname': 'Doe',
-						'patronym': 'Ivanovich',
-						'img': 'https://fillmurray.com/99/99'
-					},
-					{
-						'id':1002,
-						'name': 'Jack',
-						'lastname': 'Black',
-						'patronym': 'Petrovich',
-						'img': 'https://fillmurray.com/98/98'
-					},
-					{
-						'id':1003,
-						'name': 'Mike',
-						'lastname': 'White',
-						'patronym': 'Sidorovich',
-					},
-					{
-						'id':1004,
-						'name': 'Flinn',
-						'lastname': 'Green',
-						'patronym': 'Abramovich',
-					},
-					{
-						'id':1005,
-						'name': 'Qwerty',
-						'lastname': 'Uiop',
-						'patronym': 'ibn Rahman',
-						'img': 'https://fillmurray.com/100/100'
-					},
-				]
+				this.loadUsers();
 			},
 			methods: {
+				loadUsers: function(){
+					this.userList = [
+						{
+							'id':1001,
+							'name': 'John',
+							'lastname': 'Doe',
+							'patronym': 'Ivanovich',
+							'img': 'https://fillmurray.com/99/99'
+						},
+						{
+							'id':1002,
+							'name': 'Jack',
+							'lastname': 'Black',
+							'patronym': 'Petrovich',
+							'img': 'https://fillmurray.com/98/98'
+						},
+						{
+							'id':1003,
+							'name': 'Mike',
+							'lastname': 'White',
+							'patronym': 'Sidorovich',
+						},
+						{
+							'id':1004,
+							'name': 'Flinn',
+							'lastname': 'Green',
+							'patronym': 'Abramovich',
+						},
+						{
+							'id':1005,
+							'name': 'Qwerty',
+							'lastname': 'Uiop',
+							'patronym': 'ibn Rahman',
+							'img': 'https://fillmurray.com/100/100'
+						},
+					]
+				},
 				toggleTable: function(){
 					this.tableShown = !this.tableShown;
 				}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		[v-cloak]{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+
+	<h1>Vue</h1>
+	<div id="app" v-cloak>
+		<p :title="megaTitle()" class="test" :class="condition ? 'super' : 'bad'">
+			{{ text }}
+		</p>
+		<div :class="{ one: condition, two: true}">
+			123
+		</div>
+		<div v-if="condition" >
+			condition true
+		</div>
+		<div v-else>
+			condition false
+		</div>
+		<hr>
+		<div v-for="num, i in list" :key="i">
+			{{i}} {{num}}
+		</div>
+		<hr>
+		<button type="button" @click="toggleCondition">Toggle</button>
+		<hr>
+		<!-- <input type="text" :value="text" @input="text = $event.target.value"> -->
+		<input type="text" v-model="text">
+
+		<input type="checkbox" v-model="condition">
+		<div v-html="testHtml"></div>
+		<div v-pre>
+			{{ text }}
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		window.app = new Vue({
+			el: '#app',
+			data: function(){
+				return {
+					testHtml: '<hr><hr><hr>', 
+					text: 'Vue first app',
+					title: '123',
+					condition: true,
+					list: ['первый','второй','третий']
+				}
+			},
+			methods: {
+				megaTitle: function(){
+					return this.title + 'kkkk';
+				},
+		    toggleCondition: function () {
+		      this.condition = !this.condition;
+		    }
+			}
+		})
+	</script>
+</body>
+</html>
