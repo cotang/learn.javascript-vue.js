@@ -17,7 +17,7 @@
 
 		<div id="app">
 			<user-list :list="users" @choose="showUserDetails"></user-list>
-			<user-item :person="chosenUser"></user-item>
+			<user-item v-if="userIsChosen" :person="chosenUser"></user-item>
 		</div>
 
 
@@ -40,25 +40,24 @@
 						<td>{{user.email}}</td>
 						<td>{{user.phone}}</td>
 						<td>{{user.website}}</td>
-						<td><button type="button" class="btn btn-secondary" @click="chooseUser(user.id)">Выбрать</button></td>
+						<td><button type="button" class="btn btn-secondary" @click="chooseUser(user.id)">Edit</button></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 
-		<div v-if="userIsChosen">
-			<div id="useritem-template" class="hidden" class="card" style="width: 18rem;">
-			  <div class="card-body">
-			    <h5 class="card-title">{{person.name}}</h5>
-			    <p class="card-text">{{person.company.name}} {{person.company.catchPhrase}} {{person.company.bs}}</p>
-			    <a href="#" class="btn btn-primary">{{person.phone}}</a>
+		<div id="useritem-template" class="hidden">
+			<div class="card mb-3" style="width: 30rem;">
+		  	<div class="card-body">
+			    <h5 class="card-title"><span class="d-inline-block w-50">Name</span><input class="form-control d-inline-block w-50" type="text" v-model="person.name"> </h5>
+			    <p class="card-text"><span class="d-inline-block w-50">Username</span><input class="form-control d-inline-block w-50" type="text" v-model="person.username"></p>
+			    <p class="card-text"><span class="d-inline-block w-50">Email</span><input class="form-control d-inline-block w-50" type="text" v-model="person.email"></p>
+			    <p class="card-text"><span class="d-inline-block w-50">Phone</span><input class="form-control d-inline-block w-50" type="text" v-model="person.phone"></p>
+			    <p class="card-text"><span class="d-inline-block w-50">Website</span><input class="form-control d-inline-block w-50" type="text" v-model="person.website"></p>
 			  </div>
-			</div>
+		  </div>
 		</div>
-
-
 	</div>
-
 
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -84,6 +83,8 @@
 				person: {
 					type: Object
 				},
+			},
+			methods: {
 			}
 		}
 
