@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Список пользователей</h2>
+    <h1>Список пользователей</h1>
     <div v-if="!users.length" class="alert alert-primary" role="alert">Загрузка...</div>
     <user-list v-else :list="users" @choose="showUserDetails"></user-list>
     <user-item v-if="userIsChosen" :person="chosenUser"></user-item>
@@ -13,7 +13,7 @@ import UserList from '@/components/UserList.vue'
 import UserItem from '@/components/UserItem.vue'
 
 export default {
-  name: 'UsersPage',
+  name: 'Users',
   components: {
     'user-list': UserList,
     'user-item': UserItem,

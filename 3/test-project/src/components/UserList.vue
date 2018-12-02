@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="user, i in list" :key="user.id">
+        <tr v-for="(user) in list" v-bind:key="user.id">
           <td>{{user.firstName}}</td>
           <td>{{user.lastName }}</td>
           <td>{{user.email}}</td>
@@ -32,10 +32,10 @@ export default {
     list: {
       type: Array,
       required: true
-    },
+    }
   },
   methods: {
-    chooseUser: function(id){
+    chooseUser: function(id) {
       this.$emit('choose', id)
     }
   }
