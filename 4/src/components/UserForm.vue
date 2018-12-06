@@ -1,6 +1,10 @@
 <template>
   <div class="userform-component">
 
+    <pre>{{localUser}}</pre>
+    <hr>
+    <pre>{{user}}</pre>
+
     <div class="form-group">
       <label for="exampleInputName1">Имя</label>
       <input type="text" class="form-control" id="exampleInputName1" v-model="localUser.firstName">
@@ -57,10 +61,6 @@
       <label for="exampleInputRegistered1">Зарегистрирован</label>
       <input type="text" class="form-control" id="exampleInputRegistered1" v-model="localUser.registered">
     </div>
-
-<!--     <pre>{{localUser}}</pre>
-    <hr>
-    <pre>{{user}}</pre> -->
   </div>
 </template>
 
@@ -83,7 +83,11 @@ export default {
     localUser: {
       deep: true,
       handler: 'update'
-    }
+    },
+    // user: {
+    //   deep: true,
+    //   handler: 'update'
+    // },
   },
   mounted(){
     this.localUser = Object.assign({}, this.user)

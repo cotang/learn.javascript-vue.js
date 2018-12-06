@@ -38,7 +38,6 @@ export default {
   },
   watch: {
     '$route': 'loadUser',
-    // user: 'loadUser'
   },
   mounted(){
     this.loadUser();

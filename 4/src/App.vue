@@ -33,6 +33,7 @@
 <style>
 #app {
   margin-top: 60px;
+  font-size: 14px;
 }
 table{
   font-size: 13px;
