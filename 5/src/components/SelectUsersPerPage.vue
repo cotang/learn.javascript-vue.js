@@ -1,6 +1,6 @@
 <template>
   <div class="users-per-page-component">
-    <select class="custom-select" v-model="value" @input="changePerPageValue($event.target.value)">
+    <select class="custom-select" v-model="localPerPage" @input="changePerPageValue($event.target.value)">
       <option v-for="(opt) in perPageOptions" :value="opt" :key="opt">{{opt}}</option>
     </select>
     <p>Выбрано элементов на страницу {{value}}</p>
@@ -17,6 +17,7 @@ export default {
     }
   },
   data: () => ({
+    localPerPage: Number,
     perPageOptions: [1, 3, 5, 10]
   }),
   computed: {
@@ -24,10 +25,11 @@ export default {
   watch: {
   },
   mounted(){
+    this.localPerPage = this.value;
   },
   methods:{
     changePerPageValue(val){
-      this.$emit('input', val )
+      this.$emit('input', Number(val) )
     }
   }
 }

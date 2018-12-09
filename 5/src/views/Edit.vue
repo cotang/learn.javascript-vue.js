@@ -3,15 +3,20 @@
     <h1>Редактирование пользователя</h1>
     <div v-if="!user" class="alert alert-primary" role="alert">Загрузка...</div>
     <div v-else>
-      <div class="d-flex justify-content-between">
-        <button type="button" class="btn btn-primary" @click="prevUser">Предыдущий пользователь</button>
-        <button type="button" class="btn btn-primary" @click="nextUser">Следующий пользователь</button>
+      <div class="d-flex justify-content-between my-2">
+        <button type="button" class="btn btn-link" @click="prevUser">Предыдущий пользователь</button>
+        <button type="button" class="btn btn-link" @click="nextUser">Следующий пользователь</button>
       </div>
       <user-item v-model="user"></user-item>
     </div>
-    <button type="button" class="btn btn-primary mb-3" @click="saveUser">
-      Сохранить
-    </button>
+    <div class="d-flex justify-content-between my-3">
+      <button type="button" class="btn btn-secondary" @click="deleteUser">
+        Удалить
+      </button>
+      <button type="button" class="btn btn-primary" @click="saveUser">
+        Сохранить
+      </button>
+    </div>
   </div>
 </template>
 
@@ -51,7 +56,20 @@ export default {
         .catch(error => console.error(error))
     },
     saveUser(){
+      this.$validator.validateAll();
+      if (this.errors.any()){
+        alert('alert')
+        return;
+      }
+
       axios.patch(this.url, this.user)
+        .then(()=>{
+          this.$router.push('/users')
+        })
+        .catch(error => console.error(error))
+    },
+    deleteUser(){
+      axios.delete(this.url, this.user)
         .then(()=>{
           this.$router.push('/users')
         })

@@ -3,11 +3,26 @@
 
     <div class="form-group">
       <label for="exampleInputName1">Имя</label>
-      <input type="text" class="form-control" id="exampleInputName1" v-model="localUser.firstName">
+      <input
+        type="text"
+        class="form-control"
+        :class="{'is-invalid' : errors.has('firstName') }"
+        id="exampleInputName1"
+        name="firstName"
+        v-validate="'required'"
+        v-model="localUser.firstName">
+        <span class="help-block text-danger" v-show="errors.has('firstName')">
+          {{errors.first('firstName')}}
+        </span>
     </div>
     <div class="form-group">
       <label for="exampleInputLastName1">Фамилия</label>
-      <input type="text" class="form-control" id="exampleInputLastName1" v-model="localUser.lastName">
+      <input
+        type="text"
+        class="form-control"
+        id="exampleInputLastName1"
+        name="lastName"
+        v-model="localUser.lastName">
     </div>
     <div class="form-group">
       <label for="exampleInputPicture1">Изображение</label>
@@ -52,7 +67,7 @@
     </div>
     <div class="form-group">
       <label for="exampleTextareaAbout1">О себе</label>
-      <textarea class="form-control" id="exampleTextareaAbout1" rows="5" v-model="localUser.about"></textarea>
+      <text-editor :about="localUser.about" @updateAbout="synchronizeAbout"></text-editor>
     </div>
     <div class="form-group">
       <label for="exampleInputRegistered1">Зарегистрирован</label>
@@ -64,12 +79,15 @@
 <script>
 import Datepicker from '@/components/Datepicker.vue'
 import AvatarUploader from '@/components/AvatarUploader.vue'
+import TextEditor from '@/components/TextEditor.vue'
 
 export default {
   name: 'UserForm',
+  inject: ['$validator'],
   components: {
     'datepicker': Datepicker,
-    'avatar-uploader': AvatarUploader
+    'avatar-uploader': AvatarUploader,
+    'text-editor': TextEditor,
   },
   model: {
     prop: 'user'
@@ -104,6 +122,9 @@ export default {
   methods:{
     update(){
       this.$emit('input', Object.assign({}, this.localUser) )
+    },
+    synchronizeAbout(text){
+      this.localUser.about = text;
     }
   }
 }

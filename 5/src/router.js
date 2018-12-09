@@ -12,6 +12,10 @@ const router = new Router({
       component: () => import('@/views/Home.vue')
     },
     {
+      path: '/phones',
+      component: () => import('@/views/Phones.vue')
+    },
+    {
       path: '/users',
       component: () => import('@/views/Users.vue')
     },

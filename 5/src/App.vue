@@ -12,11 +12,11 @@
             <router-link tag="li" class="nav-item" to="/" exact>
               <a class="nav-link">Главная</a>
             </router-link>
+            <router-link tag="li" class="nav-item" to="/phones">
+              <a class="nav-link">Телефонный справочник</a>
+            </router-link>
             <router-link tag="li" class="nav-item" to="/users">
               <a class="nav-link">Список пользователя</a>
-            </router-link>
-            <router-link tag="li" class="nav-item" to="/edit">
-              <a class="nav-link">Редактирование пользователя</a>
             </router-link>
             <router-link tag="li" class="nav-item" to="/add">
               <a class="nav-link">Добавление пользователя</a>

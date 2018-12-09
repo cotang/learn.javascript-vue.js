@@ -1,10 +1,27 @@
 <template>
   <div>
-    <h1>Список пользователей</h1>
+    <h1>Телефонный справочник</h1>
     <div v-if="!users.length" class="alert alert-primary" role="alert">Загрузка...</div>
     <div v-else>
       <users-per-page v-model="perPage" />
-      <user-list :list="shownUsers"></user-list>
+      <user-list :list="shownUsers">
+        <!-- <h2 slot="header">Title!!!</h2> -->
+        <tr slot="table-header">
+          <th></th>
+          <th>Имя</th>
+          <th>Фамилия</th>
+          <th>Телефон</th>
+        </tr>
+        <template slot="table-row" slot-scope="{ item, test }">
+          <td>
+            <router-link :to="'/edit/'+ item.id">{{item.id}}</router-link>
+            <!-- <button type="button" @click="test">test</button> -->
+          </td>
+          <td>{{item.firstName}}</td>
+          <td>{{item.lastName }}</td>
+          <td>{{item.phone}}</td>
+        </template>
+      </user-list>
       <pagination :perPage="perPage" :total="total" :currentPage="currentPage" @updateCurrentpage="changeCurrentpage" />
     </div>
   </div>
