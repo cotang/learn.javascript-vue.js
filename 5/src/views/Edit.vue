@@ -58,7 +58,6 @@ export default {
     saveUser(){
       this.$validator.validateAll();
       if (this.errors.any()){
-        alert('alert')
         return;
       }
 

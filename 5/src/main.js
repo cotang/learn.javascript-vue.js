@@ -3,6 +3,7 @@ import VeeValidate from 'vee-validate'
 import App from '@/App.vue'
 import router from '@/router.js'
 import 'bootstrap/dist/css/bootstrap.css'
+import 'pretty-checkbox/dist/pretty-checkbox.css';
 
 Vue.use(VeeValidate);
 
