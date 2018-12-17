@@ -1,6 +1,6 @@
-# nuxt-cli-project
+# vue-cli-project
 
-> My sweet Nuxt.js project
+> My legendary Nuxt.js project
 
 ## Build Setup
 

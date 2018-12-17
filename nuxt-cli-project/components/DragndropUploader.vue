@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Dropzone from 'dropzone';
 import 'dropzone/dist/dropzone.css';
 
@@ -52,3 +53,5 @@ export default {
 }
 </script>
 
+<style>
+</style>

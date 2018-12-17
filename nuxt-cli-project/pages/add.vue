@@ -32,7 +32,7 @@ const initUser = {
 }
 
 export default {
-  name: 'Edit',
+  name: 'add',
   components: {
     'user-item': UserForm
   },
@@ -59,6 +59,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>
