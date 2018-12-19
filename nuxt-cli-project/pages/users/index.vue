@@ -5,9 +5,7 @@
     <div v-else>
       <users-per-page v-model="perPage" />
       <user-list :list="shownUsers"></user-list>
-      <!-- <no-ssr> -->
-        <pagination :perPage="perPage" :total="total" :currentPage="currentPage" @updateCurrentpage="changeCurrentpage" />
-      <!-- </no-ssr> -->
+      <pagination :perPage="perPage" :total="total" :currentPage="currentPage" @updateCurrentpage="changeCurrentpage" />
     </div>
   </div>
 </template>
