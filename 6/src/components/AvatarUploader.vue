@@ -19,36 +19,33 @@ export default {
       required: true
     }
   },
-  data: () => ({
-  }),
-  computed: {
-  },
-  watch: {
-  },
-  mounted(){
-  },
-  methods:{
-    uploadImage(){
-      this.$refs.avatar.click();
+  data: () => ({}),
+  computed: {},
+  watch: {},
+  mounted() {},
+  methods: {
+    uploadImage() {
+      this.$refs.avatar.click()
     },
     upload() {
-      const url = 'https://api.imgur.com/3/image';
-      const data = new FormData();
-      data.append('image', this.$refs.avatar.files[0]);
+      const url = 'https://api.imgur.com/3/image'
+      const data = new FormData()
+      data.append('image', this.$refs.avatar.files[0])
       // Добавляем ключ от IMGUR
       // https://api.imgur.com/oauth2/addclient
       const config = {
         headers: {
-          'Authorization': 'Client-ID 3bef0b8892d4b04'
+          Authorization: 'Client-ID 3bef0b8892d4b04'
         }
-      };
-      axios.post(url, data, config)
+      }
+      axios
+        .post(url, data, config)
         .then(response => response.data)
         .then(response => {
           this.$emit('input', response.data.link)
-          this.$refs.avatar.value = '';
+          this.$refs.avatar.value = ''
         })
-    },
+    }
   }
 }
 </script>

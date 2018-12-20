@@ -4,20 +4,20 @@
     <div class="form-group">
       <label for="example1">Поле из Vuex - title</label>
       <input
-        type="text"
+        id="example1"
         :value="title"
-        @input="updateTitle($event.target.value)"
+        type="text"
         class="form-control"
-        id="example1">
+        @input="updateTitle($event.target.value)">
     </div>
 
     <div class="form-group">
       <label for="example1">Поле из Vuex - main</label>
       <input
-        type="text"
+        id="example1"
         v-model="main"
-        class="form-control"
-        id="example1">
+        type="text"
+        class="form-control">
     </div>
 
   </div>
@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: 'home',
+  name: 'Home',
   computed: {
     title() {
       return this.$store.state.navbarTitle
@@ -40,10 +40,9 @@ export default {
     }
   },
   methods: {
-    updateTitle: function(val){
+    updateTitle: function(val) {
       this.$store.commit('changeTitle', val)
     }
   }
 }
 </script>
-

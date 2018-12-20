@@ -5,7 +5,7 @@
       <thead>
         <slot name="table-header">
           <tr>
-            <th></th>
+            <th/>
             <th>Имя</th>
             <th>Фамилия</th>
             <th>Изображение</th>
@@ -23,26 +23,33 @@
         </slot>
       </thead>
       <tbody>
-        <tr v-for="(user) in list" v-bind:key="user.id">
-          <slot name="table-row" :item="user" :test="testChild">
+        <tr
+          v-for="(user) in list"
+          :key="user.id">
+          <slot
+            :item="user"
+            :test="testChild"
+            name="table-row">
             <td>
-              <router-link :to="'/edit?id='+ user.id">{{user.id}}</router-link>
+              <router-link :to="'/edit?id='+ user.id">{{ user.id }}</router-link>
             </td>
-            <td>{{user.firstName}}</td>
-            <td>{{user.lastName }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
             <td>
-              <a :href="user.picture"><img :src="user.picture" :alt="user.firstName+' '+user.lastName"></a>
+              <a :href="user.picture"><img
+                :src="user.picture"
+                :alt="user.firstName+' '+user.lastName"></a>
             </td>
-            <td>{{user.isActive }}</td>
-            <td>{{user.accessLevel }}</td>
-            <td>{{user.balance}}</td>
-            <td>{{user.age }}</td>
-            <td><div class="email">{{user.email}}</div></td>
-            <td>{{user.phone}}</td>
-            <td>{{user.company}}</td>
-            <td>{{user.address}}</td>
-            <td><div class="about">{{user.about}}</div></td>
-            <td>{{user.registered}}</td>
+            <td>{{ user.isActive }}</td>
+            <td>{{ user.accessLevel }}</td>
+            <td>{{ user.balance }}</td>
+            <td>{{ user.age }}</td>
+            <td><div class="email">{{ user.email }}</div></td>
+            <td>{{ user.phone }}</td>
+            <td>{{ user.company }}</td>
+            <td>{{ user.address }}</td>
+            <td><div class="about">{{ user.about }}</div></td>
+            <td>{{ user.registered }}</td>
           </slot>
         </tr>
       </tbody>
@@ -61,12 +68,9 @@ export default {
     }
   },
   methods: {
-    testChild(){
+    testChild() {
       console.log('testChild')
     }
   }
 }
 </script>
-
-<style>
-</style>

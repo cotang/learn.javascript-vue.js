@@ -40,18 +40,17 @@ export default {
     user: initUser
   }),
   computed: {
-    url(){
+    url() {
       return 'http://localhost:3004/users'
     }
   },
-  watch: {
-  },
-  mounted(){
-  },
+  watch: {},
+  mounted() {},
   methods: {
-    saveUser(){
-      axios.post(this.url, this.user)
-        .then(()=>{
+    saveUser() {
+      axios
+        .post(this.url, this.user)
+        .then(() => {
           this.$router.push('/users')
         })
         .catch(error => console.error(error))

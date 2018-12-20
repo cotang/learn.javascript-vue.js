@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import Dropzone from 'dropzone';
-import 'dropzone/dist/dropzone.css';
+import Dropzone from 'dropzone'
+import 'dropzone/dist/dropzone.css'
 
 export default {
   name: 'DragndropUploader',
@@ -22,14 +22,12 @@ export default {
   data: () => ({
     myDropzone: null
   }),
-  computed: {
+  computed: {},
+  watch: {},
+  mounted() {
+    this.initDropzone()
   },
-  watch: {
-  },
-  mounted(){
-    this.initDropzone();
-  },
-  methods:{
+  methods: {
     initDropzone() {
       /* eslint-disable no-new */
       this.myDropzone = new Dropzone(this.$refs.dragndropAvatar, {
@@ -51,4 +49,3 @@ export default {
   }
 }
 </script>
-

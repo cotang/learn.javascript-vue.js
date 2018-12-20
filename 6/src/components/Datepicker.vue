@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import flatpickr from 'flatpickr';
-import 'flatpickr/dist/flatpickr.css';
+import flatpickr from 'flatpickr'
+import 'flatpickr/dist/flatpickr.css'
 
 export default {
   name: 'Datepicker',
@@ -19,25 +19,24 @@ export default {
   data: () => ({
     fp: null
   }),
-  computed: {
-  },
+  computed: {},
   watch: {
     value: 'updateDatepicker'
   },
-  mounted(){
+  mounted() {
     this.fp = flatpickr(this.$refs.calendar, {
       dateFormat: 'd.m.Y',
       onChange: (selectedDates, dateStr) => {
-        this.$emit('input', dateStr )
-      },
+        this.$emit('input', dateStr)
+      }
     })
   },
-  beforeDestroy(){
+  beforeDestroy() {
     this.fp.destroy()
   },
-  methods:{
-    updateDatepicker(){
-      if (this.fp){
+  methods: {
+    updateDatepicker() {
+      if (this.fp) {
         this.fp.setDate(this.value)
       }
     }

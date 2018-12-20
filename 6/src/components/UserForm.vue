@@ -98,17 +98,15 @@
 
 <script>
 import Datepicker from '@/components/Datepicker.vue'
-import AvatarUploader from '@/components/AvatarUploader.vue'
 import TextEditor from '@/components/TextEditor.vue'
 import DragndropUploader from '@/components/DragndropUploader.vue'
-import PrettyCheck from 'pretty-checkbox-vue/check';
+import PrettyCheck from 'pretty-checkbox-vue/check'
 
 export default {
   name: 'UserForm',
   inject: ['$validator'],
   components: {
-    'datepicker': Datepicker,
-    'avatar-uploader': AvatarUploader,
+    datepicker: Datepicker,
     'text-editor': TextEditor,
     'dragndrop-uploader': DragndropUploader,
     'p-check': PrettyCheck
@@ -122,7 +120,7 @@ export default {
       required: true
     }
   },
-  data: (vm) => ({
+  data: vm => ({
     localUser: vm.user,
     accessLevelArray: ['user', 'guest', 'admin']
   }),
@@ -133,22 +131,22 @@ export default {
     },
     user: {
       deep: true,
-      handler: function (val, oldVal) {
-        if (val.id != oldVal.id){
+      handler: function(val, oldVal) {
+        if (val.id != oldVal.id) {
           this.localUser = Object.assign({}, this.user)
         }
       }
-    },
+    }
   },
-  mounted(){
+  mounted() {
     this.localUser = Object.assign({}, this.user)
   },
-  methods:{
-    update(){
-      this.$emit('input', Object.assign({}, this.localUser) )
+  methods: {
+    update() {
+      this.$emit('input', Object.assign({}, this.localUser))
     },
-    synchronizeAbout(text){
-      this.localUser.about = text;
+    synchronizeAbout(text) {
+      this.localUser.about = text
     }
   }
 }

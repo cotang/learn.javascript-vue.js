@@ -41,7 +41,7 @@ export default {
     }
   },
   methods: {
-    updateTitle: function(val){
+    updateTitle: function(val) {
       this.$store.commit('changeTitle', val)
     }
   }

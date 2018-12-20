@@ -20,10 +20,10 @@ export default {
   name: 'Users',
   components: {
     'user-list': UserList,
-    'pagination': Pagination,
+    pagination: Pagination,
     'users-per-page': SelectUsersPerPage
   },
-  data: function(){
+  data: function() {
     return {
       users: [],
       perPage: 5,
@@ -31,32 +31,33 @@ export default {
     }
   },
   computed: {
-    total () {
-      return Number(this.users.length);
+    total() {
+      return Number(this.users.length)
     },
-    shownUsers () {
-      var min = this.perPage * (this.currentPage - 1);
-      var max = this.perPage * this.currentPage;
-      return this.users.filter((user, i) => (i >= min && i < max))
+    shownUsers() {
+      var min = this.perPage * (this.currentPage - 1)
+      var max = this.perPage * this.currentPage
+      return this.users.filter((user, i) => i >= min && i < max)
     }
   },
   watch: {
-    perPage(){
-      this.currentPage = 1;
+    perPage() {
+      this.currentPage = 1
     }
   },
-  mounted(){
-    this.loadUsers();
+  mounted() {
+    this.loadUsers()
   },
   methods: {
-    loadUsers(){
-      axios.get('http://localhost:3004/users')
+    loadUsers() {
+      axios
+        .get('http://localhost:3004/users')
         .then(response => response.data)
         .then(response => (this.users = response))
         .catch(error => console.error(error))
     },
-    changeCurrentpage(n){
-      this.currentPage = n;
+    changeCurrentpage(n) {
+      this.currentPage = n
     }
   }
 }

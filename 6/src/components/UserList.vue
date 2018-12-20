@@ -61,7 +61,7 @@ export default {
     }
   },
   methods: {
-    testChild(){
+    testChild() {
       console.log('testChild')
     }
   }

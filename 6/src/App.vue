@@ -41,7 +41,7 @@ export default {
     },
     main() {
       return this.$store.state.navbarMain
-    },
+    }
   }
 }
 </script>

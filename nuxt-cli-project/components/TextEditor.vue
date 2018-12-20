@@ -1,11 +1,13 @@
 <template>
   <div class="texteditor-component">
-    <vue-editor v-model="editingText" @text-change="updateText"></vue-editor>
+    <vue-editor 
+      v-model="editingText" 
+      @text-change="updateText"/>
   </div>
 </template>
 
 <script>
-import { VueEditor } from "vue2-editor";
+import { VueEditor } from 'vue2-editor'
 
 export default {
   name: 'TextEditor',
@@ -21,23 +23,13 @@ export default {
   data: () => ({
     editingText: ''
   }),
-  computed: {
+  mounted() {
+    this.editingText = this.about
   },
-  watch: {
-  },
-  mounted(){
-    this.editingText = this.about;
-  },
-  beforeDestroy(){
-  },
-  methods:{
-    updateText(){
-      // console.log(this.editingText)
-      this.$emit('updateAbout', this.editingText )
+  methods: {
+    updateText() {
+      this.$emit('updateAbout', this.editingText)
     }
   }
 }
 </script>
-
-<style>
-</style>

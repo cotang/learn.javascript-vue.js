@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { VueEditor } from "vue2-editor";
+import { VueEditor } from 'vue2-editor'
 
 export default {
   name: 'TextEditor',
@@ -21,19 +21,16 @@ export default {
   data: () => ({
     editingText: ''
   }),
-  computed: {
+  computed: {},
+  watch: {},
+  mounted() {
+    this.editingText = this.about
   },
-  watch: {
-  },
-  mounted(){
-    this.editingText = this.about;
-  },
-  beforeDestroy(){
-  },
-  methods:{
-    updateText(){
+  beforeDestroy() {},
+  methods: {
+    updateText() {
       // console.log(this.editingText)
-      this.$emit('updateAbout', this.editingText )
+      this.$emit('updateAbout', this.editingText)
     }
   }
 }

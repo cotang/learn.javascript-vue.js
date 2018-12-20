@@ -20,16 +20,14 @@ export default {
     localPerPage: Number,
     perPageOptions: [1, 3, 5, 10]
   }),
-  computed: {
+  computed: {},
+  watch: {},
+  mounted() {
+    this.localPerPage = this.value
   },
-  watch: {
-  },
-  mounted(){
-    this.localPerPage = this.value;
-  },
-  methods:{
-    changePerPageValue(val){
-      this.$emit('input', Number(val) )
+  methods: {
+    changePerPageValue(val) {
+      this.$emit('input', Number(val))
     }
   }
 }

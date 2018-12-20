@@ -41,19 +41,18 @@ export default {
       required: true
     }
   },
-  data: () => ({
-  }),
+  data: () => ({}),
   computed: {
-    pagesArray () {
+    pagesArray() {
       var pagesArrayComputed = Math.ceil(this.total / this.perPage)
-      return Array(pagesArrayComputed).fill().map((e,i)=>i+1);
+      return Array(pagesArrayComputed)
+        .fill()
+        .map((e, i) => i + 1)
     }
   },
-  watch: {
-  },
-  mounted(){
-  },
-  methods:{
+  watch: {},
+  mounted() {},
+  methods: {
     choosePageNumber: function(n) {
       this.$emit('updateCurrentpage', n)
     }

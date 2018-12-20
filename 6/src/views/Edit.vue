@@ -29,59 +29,62 @@ export default {
   components: {
     'user-item': UserForm
   },
-  data: function(){
+  data: function() {
     return {
       user: null
     }
   },
   computed: {
-    id () {
+    id() {
       return Number(this.$route.params.id)
     },
-    url(){
+    url() {
       return 'http://localhost:3004/users/' + this.id
     }
   },
   watch: {
-    '$route': 'loadUser',
+    $route: 'loadUser'
   },
-  mounted(){
-    this.loadUser();
+  mounted() {
+    this.loadUser()
   },
   methods: {
-    loadUser(){
-      axios.get(this.url)
+    loadUser() {
+      axios
+        .get(this.url)
         .then(response => response.data)
         .then(response => (this.user = response))
         .catch(error => console.error(error))
     },
-    saveUser(){
-      this.$validator.validateAll();
-      if (this.errors.any()){
-        return;
+    saveUser() {
+      this.$validator.validateAll()
+      if (this.errors.any()) {
+        return
       }
 
-      axios.patch(this.url, this.user)
-        .then(()=>{
+      axios
+        .patch(this.url, this.user)
+        .then(() => {
           this.$router.push('/users')
         })
         .catch(error => console.error(error))
     },
-    deleteUser(){
-      axios.delete(this.url, this.user)
-        .then(()=>{
+    deleteUser() {
+      axios
+        .delete(this.url, this.user)
+        .then(() => {
           this.$router.push('/users')
         })
         .catch(error => console.error(error))
     },
-    prevUser(){
-      if (this.id > 0 ){
-        this.$router.push('/edit/' + (this.id - 1));
+    prevUser() {
+      if (this.id > 0) {
+        this.$router.push('/edit/' + (this.id - 1))
       }
     },
-    nextUser(){
-      if (this.id < 10 ){
-        this.$router.push('/edit/' + (this.id + 1));
+    nextUser() {
+      if (this.id < 10) {
+        this.$router.push('/edit/' + (this.id + 1))
       }
     }
   }

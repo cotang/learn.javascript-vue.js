@@ -3,29 +3,55 @@
     <div id="nav">
 
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">{{title}}</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <a 
+          class="navbar-brand" 
+          href="#">{{ title }}</a>
+        <button 
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon" />
         </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div 
+          id="navbarCollapse"
+          class="collapse navbar-collapse">
           <ul class="navbar-nav mr-auto">
-            <router-link tag="li" class="nav-item" to="/" exact>
-              <a class="nav-link">{{main}}</a>
+            <router-link 
+              tag="li" 
+              class="nav-item" 
+              to="/" 
+              exact>
+              <a class="nav-link">{{ main }}</a>
             </router-link>
-            <router-link tag="li" class="nav-item" to="/phones">
+            <router-link 
+              tag="li" 
+              class="nav-item" 
+              to="/phones">
               <a class="nav-link">Телефонный справочник</a>
             </router-link>
-            <router-link tag="li" class="nav-item" to="/users">
+            <router-link 
+              tag="li" 
+              class="nav-item" 
+              to="/users">
               <a class="nav-link">Список пользователя</a>
             </router-link>
-            <router-link tag="li" class="nav-item" to="/add">
+            <router-link 
+              tag="li" 
+              class="nav-item" 
+              to="/add">
               <a class="nav-link">Добавление пользователя</a>
             </router-link>
           </ul>
         </div>
       </nav>
 
-      <main role="main" class="container">
+      <main 
+        role="main" 
+        class="container">
         <nuxt/>
       </main>
     </div>
@@ -41,7 +67,7 @@ export default {
     },
     main() {
       return this.$store.state.navbarMain
-    },
+    }
   }
 }
 </script>
@@ -65,4 +91,3 @@ table {
   word-wrap: break-word;
 }
 </style>
-
