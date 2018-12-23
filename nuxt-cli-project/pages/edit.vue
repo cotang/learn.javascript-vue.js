@@ -1,34 +1,34 @@
 <template>
   <div class="edit">
     <h1>Редактирование пользователя</h1>
-    <div 
-      v-if="!user" 
-      class="alert alert-primary" 
+    <div
+      v-if="!user"
+      class="alert alert-primary"
       role="alert">Загрузка...</div>
     <div v-else>
       <div class="d-flex justify-content-between my-2">
-        <button 
-          type="button" 
-          class="btn btn-link" 
+        <button
+          type="button"
+          class="btn btn-link"
           @click="prevUser">Предыдущий пользователь</button>
-        <button 
-          type="button" 
-          class="btn btn-link" 
+        <button
+          type="button"
+          class="btn btn-link"
           @click="nextUser">Следующий пользователь</button>
       </div>
       <user-item v-model="user" />
     </div>
     <!-- <no-ssr> -->
     <div class="d-flex justify-content-between my-3">
-      <button 
-        type="button" 
-        class="btn btn-secondary" 
+      <button
+        type="button"
+        class="btn btn-secondary"
         @click="deleteUser">
         Удалить
       </button>
-      <button 
-        type="button" 
-        class="btn btn-primary" 
+      <button
+        type="button"
+        class="btn btn-primary"
         @click="saveUser">
         Сохранить
       </button>
@@ -89,17 +89,13 @@ export default {
 
       axios
         .patch(this.url, this.user)
-        .then(() => {
-          this.$router.push('/users')
-        })
+        .then(() => this.$store.dispatch('goToUsersPage'))
         .catch(error => console.error(error))
     },
     deleteUser() {
       axios
         .delete(this.url, this.user)
-        .then(() => {
-          this.$router.push('/users')
-        })
+        .then(() => this.$store.dispatch('goToUsersPage'))
         .catch(error => console.error(error))
     },
     prevUser() {

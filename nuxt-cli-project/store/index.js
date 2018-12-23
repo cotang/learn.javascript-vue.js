@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
+import axios from '@/axios.js'
 
 Vue.use(Vuex)
 
@@ -23,10 +23,13 @@ const store = () =>
     actions: {
       loadUsers(context) {
         axios
-          .get('http://localhost:3004/users')
+          .get('/users')
           .then(response => response.data)
           .then(response => context.commit('setUsers', response))
           .catch(error => console.error(error))
+      },
+      goToUsersPage() {
+        this.$router.push('/users')
       }
     }
   })

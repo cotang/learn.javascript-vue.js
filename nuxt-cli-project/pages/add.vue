@@ -3,15 +3,15 @@
     <h1>Добавление пользователя</h1>
     <user-item v-model="user" />
     <div class="d-flex justify-content-between my-3">
-      <button 
-        type="button" 
-        class="btn btn-secondary" 
+      <button
+        type="button"
+        class="btn btn-secondary"
         @click="gotoUsers">
         Список пользователей
       </button>
-      <button 
-        type="button" 
-        class="btn btn-primary" 
+      <button
+        type="button"
+        class="btn btn-primary"
         @click="saveUser">
         Сохранить
       </button>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '@/axios.js'
 import UserForm from '@/components/UserForm.vue'
 
 const initUser = {
@@ -48,20 +48,15 @@ export default {
   data: () => ({
     user: initUser
   }),
-  computed: {
-    url() {
-      return 'http://localhost:3004/users'
-    }
-  },
   methods: {
     saveUser() {
       axios
-        .post(this.url, this.user)
-        .then(() => this.$router.push('/users'))
+        .post('/users', this.user)
+        .then(() => this.$store.dispatch('goToUsersPage'))
         .catch(error => console.error(error))
     },
     gotoUsers() {
-      this.$router.push('/users')
+      this.$store.dispatch('goToUsersPage')
     }
   }
 }

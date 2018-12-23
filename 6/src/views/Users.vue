@@ -11,11 +11,10 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 import UserList from '@/components/UserList.vue'
 import Pagination from '@/components/Pagination.vue'
 import SelectUsersPerPage from '@/components/SelectUsersPerPage.vue'
-
 export default {
   name: 'Users',
   components: {
@@ -25,12 +24,14 @@ export default {
   },
   data: function() {
     return {
-      users: [],
       perPage: 5,
       currentPage: 1
     }
   },
   computed: {
+    users() {
+      return this.$store.state.users
+    },
     total() {
       return Number(this.users.length)
     },
@@ -46,16 +47,17 @@ export default {
     }
   },
   mounted() {
-    this.loadUsers()
+    this.$store.dispatch('loadUsers')
+    // this.loadUsers()
   },
   methods: {
-    loadUsers() {
-      axios
-        .get('http://localhost:3004/users')
-        .then(response => response.data)
-        .then(response => (this.users = response))
-        .catch(error => console.error(error))
-    },
+    // loadUsers() {
+    //   axios
+    //     .get('http://localhost:3004/users')
+    //     .then(response => response.data)
+    //     .then(response => (this.users = response))
+    //     .catch(error => console.error(error))
+    // },
     changeCurrentpage(n) {
       this.currentPage = n
     }
