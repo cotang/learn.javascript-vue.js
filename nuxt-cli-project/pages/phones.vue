@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import axios from '@/axios.js'
+import axios from 'axios'
 import UserList from '@/components/UserList.vue'
 
 export default {
