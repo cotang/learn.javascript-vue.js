@@ -18,7 +18,6 @@
       </div>
       <user-item v-model="user" />
     </div>
-    <!-- <no-ssr> -->
     <div class="d-flex justify-content-between my-3">
       <button
         type="button"
@@ -33,7 +32,6 @@
         Сохранить
       </button>
     </div>
-    <!-- </no-ssr> -->
   </div>
 </template>
 

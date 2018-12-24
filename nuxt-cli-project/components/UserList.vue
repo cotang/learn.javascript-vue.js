@@ -31,7 +31,6 @@
             :key="user.id">
             <slot
               :item="user"
-              :test="testChild"
               name="table-row">
               <td>
                 <router-link :to="'/edit?id='+ user.id">{{ user.id }}</router-link>

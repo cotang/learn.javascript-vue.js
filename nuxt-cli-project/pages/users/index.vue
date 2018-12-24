@@ -21,7 +21,7 @@ export default {
     'user-list': UserList
   },
   asyncData() {
-    axios
+    return axios
       .get('http://localhost:3004/users')
       .then(response => response.data)
       .then(response => {
@@ -29,11 +29,11 @@ export default {
       })
       .catch(error => console.error(error))
   },
-  computed: {
-    users() {
-      return this.$store.state.users
-    }
-  },
+  // computed: {
+  //   users() {
+  //     return this.$store.state.users
+  //   }
+  // },
   mounted() {
     this.$store.dispatch('loadUsers')
   }

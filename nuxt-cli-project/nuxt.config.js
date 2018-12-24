@@ -29,7 +29,7 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ['plugins/vee-validate.js'],
+  plugins: ['plugins/vee-validate.js', {src: '@/plugins/vue2-editor', ssr: false}],
 
   /*
   ** Nuxt.js modules
@@ -40,10 +40,12 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    vendor : 'vue2-editor',
     /*
     ** You can extend webpack config here
     */
     extend(config, ctx) {
+      config.resolve.alias['vue2-editor'] = 'vue2-editor';
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({

@@ -1,13 +1,15 @@
 <template>
   <div class="texteditor-component">
-    <vue-editor 
-      v-model="editingText" 
+    <vue-editor
+      v-model="editingText"
+      placeholder="Write Something..."
       @text-change="updateText"/>
   </div>
 </template>
 
 <script>
-import { VueEditor } from 'vue2-editor'
+const VueEditor = process.client ? require('vue2-editor') : ''
+// import { VueEditor } from 'vue2-editor'
 
 export default {
   name: 'TextEditor',

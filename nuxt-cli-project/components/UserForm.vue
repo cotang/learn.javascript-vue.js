@@ -43,7 +43,7 @@
         v-model="localUser.picture"
         type="text"
         class="form-control my-3">
-      <dragndrop-uploader v-model="localUser.picture" />
+        <!-- <dragndrop-uploader v-model="localUser.picture" /> -->
     </div>
     <div class="form-group">
       <p-check
@@ -134,9 +134,11 @@
     </div>
     <div class="form-group">
       <label for="exampleTextareaAbout1">О себе</label>
-      <text-editor
-        :about="localUser.about"
-        @updateAbout="synchronizeAbout"/>
+      <no-ssr placeholder="Loading Your Editor...">
+        <text-editor
+          :about="localUser.about"
+          @updateAbout="synchronizeAbout" />
+      </no-ssr>
     </div>
     <div class="form-group">
       <label for="exampleInputRegistered1">Зарегистрирован</label>
@@ -149,7 +151,7 @@
 import equal from 'deep-equal'
 import Datepicker from '@/components/Datepicker.vue'
 import TextEditor from '@/components/TextEditor.vue'
-import DragndropUploader from '@/components/DragndropUploader.vue'
+// import DragndropUploader from '@/components/DragndropUploader.vue'
 import PrettyCheck from 'pretty-checkbox-vue/check'
 
 export default {
@@ -158,7 +160,7 @@ export default {
   components: {
     datepicker: Datepicker,
     'text-editor': TextEditor,
-    'dragndrop-uploader': DragndropUploader,
+    // 'dragndrop-uploader': DragndropUploader,
     'p-check': PrettyCheck
   },
   model: {
